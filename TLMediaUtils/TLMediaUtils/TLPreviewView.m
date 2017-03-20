@@ -10,6 +10,8 @@
 
 @interface TLPreviewView ()
 
+@property (assign, nonatomic) CGPoint focusPoint;
+
 @end
 
 @implementation TLPreviewView
@@ -31,6 +33,8 @@
     
     ((AVCaptureVideoPreviewLayer *)self.layer).videoGravity = AVLayerVideoGravityResizeAspectFill;
     
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+    [self addGestureRecognizer:tapGesture];
 }
 
 - (void)setSession:(AVCaptureSession *)session {
@@ -39,6 +43,30 @@
 
 - (AVCaptureSession *)session {
     return [(AVCaptureVideoPreviewLayer *)self.layer session];
+}
+
+- (void)handleTapGesture:(UITapGestureRecognizer *)recognizer {
+    
+    self.focusPoint = [recognizer locationInView:self];
+    
+    // 将屏幕上的点转化为摄像头坐标系中的点
+    CGPoint pointOfInterest = [self convertToPointOfInterestFromPoint:self.focusPoint];
+    
+#warning TODO - 添加动画框框
+    
+    if (self.delegate) {
+        [self.delegate previewView:self focusAtPoint:pointOfInterest];
+        [self.delegate previewView:self exposeAtPoint:pointOfInterest];
+    }
+}
+
+- (CGPoint)convertToPointOfInterestFromPoint:(CGPoint)point {
+    AVCaptureVideoPreviewLayer *layer = (AVCaptureVideoPreviewLayer *)self.layer;
+    return [layer captureDevicePointOfInterestForPoint:point];
+}
+
+- (void)drawFocusBox {
+    UIBezierPath *path = [UIBezierPath bezierPath];
 }
 
 @end

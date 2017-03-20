@@ -37,14 +37,17 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="7SE-DE-E7P" secondAttribute="bottom" constant="30" id="6Cg-Hj-6hr"/>
                                     <constraint firstItem="7SE-DE-E7P" firstAttribute="centerX" secondItem="Vqc-8S-f2m" secondAttribute="centerX" id="8Ht-l3-fXG"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="captureButton" destination="7SE-DE-E7P" id="Z2G-cT-cHE"/>
+                                </connections>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Vqc-8S-f2m" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="E8K-Jb-RcJ"/>
                             <constraint firstItem="Vqc-8S-f2m" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="MtV-cb-yPN"/>

@@ -199,6 +199,38 @@
     return orientation;
 }
 
+#pragma mark - Focus & Expose
+- (void)focusAtPoint:(CGPoint)point {
+    AVCaptureDevice *device = self.currentInput.device;
+    
+    if (device.isFocusPointOfInterestSupported && [device isFocusModeSupported:AVCaptureFocusModeAutoFocus]) {
+        
+        NSError *error;
+        if ([device lockForConfiguration:&error]) {
+            [device setFocusMode:AVCaptureFocusModeAutoFocus];
+            [device setFocusPointOfInterest:point];
+            [device unlockForConfiguration];
+        } else {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+    }
+}
+
+- (void)exposeAtPoint:(CGPoint)point {
+    AVCaptureDevice *device = self.currentInput.device;
+    
+    if (device.isExposurePointOfInterestSupported && [device isExposureModeSupported:AVCaptureExposureModeAutoExpose]) {
+        
+        NSError *error;
+        if ([device lockForConfiguration:&error]) {
+            [device setExposureMode:AVCaptureExposureModeAutoExpose];
+            [device setExposurePointOfInterest:point];
+            [device unlockForConfiguration];
+        } else {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+    }
+}
 
 #pragma mark - dealloc
 - (void)dealloc {

@@ -10,4 +10,12 @@
 
 @implementation OverlayView
 
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    if ([self.captureButton pointInside:[self convertPoint:point toView:self.captureButton] withEvent:event]) {
+        return YES;
+    }
+    
+    return NO;
+}
+
 @end

@@ -10,8 +10,18 @@
 
 #import <AVFoundation/AVFoundation.h>
 
+@class TLPreviewView;
+
+@protocol TLPreviewViewDelegate <NSObject>
+
+- (void)previewView:(TLPreviewView *)previewView focusAtPoint:(CGPoint)point;
+- (void)previewView:(TLPreviewView *)previewView exposeAtPoint:(CGPoint)point;
+
+@end
+
 @interface TLPreviewView : UIView
 
 @property (strong, nonatomic) AVCaptureSession *session;
+@property (weak, nonatomic) id<TLPreviewViewDelegate> delegate;
 
 @end

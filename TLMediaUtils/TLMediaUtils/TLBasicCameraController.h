@@ -25,4 +25,8 @@
 // capture
 - (void)captureStillImage;
 
+// focus and expose
+- (void)focusAtPoint:(CGPoint)point;
+- (void)exposeAtPoint:(CGPoint)point;
+
 @end

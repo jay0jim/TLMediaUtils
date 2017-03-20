@@ -12,7 +12,7 @@
 #import "TLPreviewView.h"
 #import "OverlayView.h"
 
-@interface ViewController ()
+@interface ViewController () <TLPreviewViewDelegate>
 
 @property (weak, nonatomic) IBOutlet OverlayView *overlayView;
 
@@ -32,7 +32,9 @@
         
         TLPreviewView *previewView = [[TLPreviewView alloc] initWithFrame:self.view.bounds];
         previewView.session = self.cameraController.captureSession;
+        previewView.delegate = self;
         [self.view insertSubview:previewView belowSubview:self.overlayView];
+//        [self.view addSubview:previewView];
         
         [self.cameraController startSession];
     }
@@ -40,6 +42,14 @@
 
 - (IBAction)captureStillImageButtonPressed:(UIButton *)sender {
     [self.cameraController captureStillImage];
+}
+
+- (void)previewView:(TLPreviewView *)previewView exposeAtPoint:(CGPoint)point {
+    [self.cameraController exposeAtPoint:point];
+}
+
+- (void)previewView:(TLPreviewView *)previewView focusAtPoint:(CGPoint)point {
+    [self.cameraController focusAtPoint:point];
 }
 
 - (void)didReceiveMemoryWarning {

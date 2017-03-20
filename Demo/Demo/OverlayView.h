@@ -10,6 +10,6 @@
 
 @interface OverlayView : UIView
 
-- (IBAction)captureButtonPressed:(UIButton *)sender;
+@property (weak, nonatomic) IBOutlet UIButton *captureButton;
 
 @end
