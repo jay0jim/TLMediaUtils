@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EA073C0D1E7FC5EF004B9AF1 /* libTLMediaUtils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA073C0C1E7FC5EF004B9AF1 /* libTLMediaUtils.a */; };
 		EA41EB991E7FAB9F00210999 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA41EB981E7FAB9F00210999 /* main.m */; };
 		EA41EB9C1E7FAB9F00210999 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA41EB9B1E7FAB9F00210999 /* AppDelegate.m */; };
 		EA41EB9F1E7FAB9F00210999 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA41EB9E1E7FAB9F00210999 /* ViewController.m */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EA073C0C1E7FC5EF004B9AF1 /* libTLMediaUtils.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTLMediaUtils.a; path = "../TLMediaUtils/build/Debug-iphoneos/libTLMediaUtils.a"; sourceTree = "<group>"; };
 		EA41EB941E7FAB9F00210999 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA41EB981E7FAB9F00210999 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EA41EB9A1E7FAB9F00210999 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -33,17 +35,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA073C0D1E7FC5EF004B9AF1 /* libTLMediaUtils.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EA073C0B1E7FC5EF004B9AF1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA073C0C1E7FC5EF004B9AF1 /* libTLMediaUtils.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EA41EB8B1E7FAB9F00210999 = {
 			isa = PBXGroup;
 			children = (
 				EA41EB961E7FAB9F00210999 /* Demo */,
 				EA41EB951E7FAB9F00210999 /* Products */,
+				EA073C0B1E7FC5EF004B9AF1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -272,6 +284,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UVLX4292NF;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../TLMediaUtils/**";
 				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -285,6 +298,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UVLX4292NF;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../TLMediaUtils/**";
 				INFOPLIST_FILE = Demo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -312,6 +326,7 @@
 				EA41EBAD1E7FABA000210999 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

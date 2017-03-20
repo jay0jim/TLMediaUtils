@@ -7,29 +7,35 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EA41EB761E7FAAC500210999 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA41EB751E7FAAC500210999 /* main.m */; };
-		EA41EB791E7FAAC500210999 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA41EB781E7FAAC500210999 /* AppDelegate.m */; };
-		EA41EB7C1E7FAAC500210999 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA41EB7B1E7FAAC500210999 /* ViewController.m */; };
-		EA41EB7F1E7FAAC500210999 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA41EB7D1E7FAAC500210999 /* Main.storyboard */; };
-		EA41EB811E7FAAC500210999 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA41EB801E7FAAC500210999 /* Assets.xcassets */; };
-		EA41EB841E7FAAC500210999 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA41EB821E7FAAC500210999 /* LaunchScreen.storyboard */; };
+		EA073C091E7FC582004B9AF1 /* TLBasicCameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA073C061E7FC582004B9AF1 /* TLBasicCameraController.m */; };
+		EA073C0A1E7FC582004B9AF1 /* TLPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA073C081E7FC582004B9AF1 /* TLPreviewView.m */; };
+		EA073C101E7FC64B004B9AF1 /* TLMediaUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EA073C0F1E7FC64B004B9AF1 /* TLMediaUtils.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		EA073BF71E7FC55D004B9AF1 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		EA41EB711E7FAAC500210999 /* TLMediaUtils.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TLMediaUtils.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA41EB751E7FAAC500210999 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		EA41EB771E7FAAC500210999 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		EA41EB781E7FAAC500210999 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		EA41EB7A1E7FAAC500210999 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		EA41EB7B1E7FAAC500210999 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		EA41EB7E1E7FAAC500210999 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		EA41EB801E7FAAC500210999 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		EA41EB831E7FAAC500210999 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		EA41EB851E7FAAC500210999 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EA073BF91E7FC55D004B9AF1 /* libTLMediaUtils.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTLMediaUtils.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA073C051E7FC582004B9AF1 /* TLBasicCameraController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLBasicCameraController.h; sourceTree = "<group>"; };
+		EA073C061E7FC582004B9AF1 /* TLBasicCameraController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLBasicCameraController.m; sourceTree = "<group>"; };
+		EA073C071E7FC582004B9AF1 /* TLPreviewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLPreviewView.h; sourceTree = "<group>"; };
+		EA073C081E7FC582004B9AF1 /* TLPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLPreviewView.m; sourceTree = "<group>"; };
+		EA073C0E1E7FC64B004B9AF1 /* TLMediaUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMediaUtils.h; sourceTree = "<group>"; };
+		EA073C0F1E7FC64B004B9AF1 /* TLMediaUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMediaUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		EA41EB6E1E7FAAC500210999 /* Frameworks */ = {
+		EA073BF61E7FC55D004B9AF1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -39,56 +45,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		EA41EB681E7FAAC500210999 = {
+		EA073BF01E7FC55D004B9AF1 = {
 			isa = PBXGroup;
 			children = (
-				EA41EB731E7FAAC500210999 /* TLMediaUtils */,
-				EA41EB721E7FAAC500210999 /* Products */,
+				EA073BFB1E7FC55D004B9AF1 /* TLMediaUtils */,
+				EA073BFA1E7FC55D004B9AF1 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		EA41EB721E7FAAC500210999 /* Products */ = {
+		EA073BFA1E7FC55D004B9AF1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EA41EB711E7FAAC500210999 /* TLMediaUtils.app */,
+				EA073BF91E7FC55D004B9AF1 /* libTLMediaUtils.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		EA41EB731E7FAAC500210999 /* TLMediaUtils */ = {
+		EA073BFB1E7FC55D004B9AF1 /* TLMediaUtils */ = {
 			isa = PBXGroup;
 			children = (
-				EA41EB771E7FAAC500210999 /* AppDelegate.h */,
-				EA41EB781E7FAAC500210999 /* AppDelegate.m */,
-				EA41EB7A1E7FAAC500210999 /* ViewController.h */,
-				EA41EB7B1E7FAAC500210999 /* ViewController.m */,
-				EA41EB7D1E7FAAC500210999 /* Main.storyboard */,
-				EA41EB801E7FAAC500210999 /* Assets.xcassets */,
-				EA41EB821E7FAAC500210999 /* LaunchScreen.storyboard */,
-				EA41EB851E7FAAC500210999 /* Info.plist */,
-				EA41EB741E7FAAC500210999 /* Supporting Files */,
+				EA073C0E1E7FC64B004B9AF1 /* TLMediaUtils.h */,
+				EA073C0F1E7FC64B004B9AF1 /* TLMediaUtils.m */,
+				EA073C051E7FC582004B9AF1 /* TLBasicCameraController.h */,
+				EA073C061E7FC582004B9AF1 /* TLBasicCameraController.m */,
+				EA073C071E7FC582004B9AF1 /* TLPreviewView.h */,
+				EA073C081E7FC582004B9AF1 /* TLPreviewView.m */,
 			);
 			path = TLMediaUtils;
-			sourceTree = "<group>";
-		};
-		EA41EB741E7FAAC500210999 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				EA41EB751E7FAAC500210999 /* main.m */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EA41EB701E7FAAC500210999 /* TLMediaUtils */ = {
+		EA073BF81E7FC55D004B9AF1 /* TLMediaUtils */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EA41EB881E7FAAC500210999 /* Build configuration list for PBXNativeTarget "TLMediaUtils" */;
+			buildConfigurationList = EA073C021E7FC55D004B9AF1 /* Build configuration list for PBXNativeTarget "TLMediaUtils" */;
 			buildPhases = (
-				EA41EB6D1E7FAAC500210999 /* Sources */,
-				EA41EB6E1E7FAAC500210999 /* Frameworks */,
-				EA41EB6F1E7FAAC500210999 /* Resources */,
+				EA073BF51E7FC55D004B9AF1 /* Sources */,
+				EA073BF61E7FC55D004B9AF1 /* Frameworks */,
+				EA073BF71E7FC55D004B9AF1 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -96,90 +91,57 @@
 			);
 			name = TLMediaUtils;
 			productName = TLMediaUtils;
-			productReference = EA41EB711E7FAAC500210999 /* TLMediaUtils.app */;
-			productType = "com.apple.product-type.application";
+			productReference = EA073BF91E7FC55D004B9AF1 /* libTLMediaUtils.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		EA41EB691E7FAAC500210999 /* Project object */ = {
+		EA073BF11E7FC55D004B9AF1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Tony;
 				TargetAttributes = {
-					EA41EB701E7FAAC500210999 = {
+					EA073BF81E7FC55D004B9AF1 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = UVLX4292NF;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = EA41EB6C1E7FAAC500210999 /* Build configuration list for PBXProject "TLMediaUtils" */;
+			buildConfigurationList = EA073BF41E7FC55D004B9AF1 /* Build configuration list for PBXProject "TLMediaUtils" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 			);
-			mainGroup = EA41EB681E7FAAC500210999;
-			productRefGroup = EA41EB721E7FAAC500210999 /* Products */;
+			mainGroup = EA073BF01E7FC55D004B9AF1;
+			productRefGroup = EA073BFA1E7FC55D004B9AF1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EA41EB701E7FAAC500210999 /* TLMediaUtils */,
+				EA073BF81E7FC55D004B9AF1 /* TLMediaUtils */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		EA41EB6F1E7FAAC500210999 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				EA41EB841E7FAAC500210999 /* LaunchScreen.storyboard in Resources */,
-				EA41EB811E7FAAC500210999 /* Assets.xcassets in Resources */,
-				EA41EB7F1E7FAAC500210999 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		EA41EB6D1E7FAAC500210999 /* Sources */ = {
+		EA073BF51E7FC55D004B9AF1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA41EB7C1E7FAAC500210999 /* ViewController.m in Sources */,
-				EA41EB791E7FAAC500210999 /* AppDelegate.m in Sources */,
-				EA41EB761E7FAAC500210999 /* main.m in Sources */,
+				EA073C101E7FC64B004B9AF1 /* TLMediaUtils.m in Sources */,
+				EA073C091E7FC582004B9AF1 /* TLBasicCameraController.m in Sources */,
+				EA073C0A1E7FC582004B9AF1 /* TLPreviewView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		EA41EB7D1E7FAAC500210999 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EA41EB7E1E7FAAC500210999 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		EA41EB821E7FAAC500210999 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EA41EB831E7FAAC500210999 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		EA41EB861E7FAAC500210999 /* Debug */ = {
+		EA073C001E7FC55D004B9AF1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -219,14 +181,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
-		EA41EB871E7FAAC500210999 /* Release */ = {
+		EA073C011E7FC55D004B9AF1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -260,60 +222,54 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		EA41EB891E7FAAC500210999 /* Debug */ = {
+		EA073C031E7FC55D004B9AF1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UVLX4292NF;
-				INFOPLIST_FILE = TLMediaUtils/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Tony.TLMediaUtils;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
-		EA41EB8A1E7FAAC500210999 /* Release */ = {
+		EA073C041E7FC55D004B9AF1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UVLX4292NF;
-				INFOPLIST_FILE = TLMediaUtils/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Tony.TLMediaUtils;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EA41EB6C1E7FAAC500210999 /* Build configuration list for PBXProject "TLMediaUtils" */ = {
+		EA073BF41E7FC55D004B9AF1 /* Build configuration list for PBXProject "TLMediaUtils" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EA41EB861E7FAAC500210999 /* Debug */,
-				EA41EB871E7FAAC500210999 /* Release */,
+				EA073C001E7FC55D004B9AF1 /* Debug */,
+				EA073C011E7FC55D004B9AF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EA41EB881E7FAAC500210999 /* Build configuration list for PBXNativeTarget "TLMediaUtils" */ = {
+		EA073C021E7FC55D004B9AF1 /* Build configuration list for PBXNativeTarget "TLMediaUtils" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EA41EB891E7FAAC500210999 /* Debug */,
-				EA41EB8A1E7FAAC500210999 /* Release */,
+				EA073C031E7FC55D004B9AF1 /* Debug */,
+				EA073C041E7FC55D004B9AF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = EA41EB691E7FAAC500210999 /* Project object */;
+	rootObject = EA073BF11E7FC55D004B9AF1 /* Project object */;
 }

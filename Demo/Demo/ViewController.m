@@ -8,6 +8,9 @@
 
 #import "ViewController.h"
 
+#import "TLBasicCameraController.h"
+#import "TLPreviewView.h"
+
 @interface ViewController ()
 
 @end
@@ -16,7 +19,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    TLBasicCameraController *cameraController = [[TLBasicCameraController alloc] init];
+    
+    NSError *error = nil;
+    if ([cameraController setupSession:&error]) {
+        
+        TLPreviewView *previewView = [[TLPreviewView alloc] initWithFrame:self.view.bounds];
+        previewView.session = cameraController.captureSession;
+        [self.view addSubview:previewView];
+        
+        [cameraController startSession];
+    }
 }
 
 
