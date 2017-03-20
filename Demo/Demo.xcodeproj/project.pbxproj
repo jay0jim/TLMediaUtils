@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EA073C0D1E7FC5EF004B9AF1 /* libTLMediaUtils.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA073C0C1E7FC5EF004B9AF1 /* libTLMediaUtils.a */; };
+		EA073C181E7FC817004B9AF1 /* OverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA073C171E7FC817004B9AF1 /* OverlayView.m */; };
 		EA41EB991E7FAB9F00210999 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA41EB981E7FAB9F00210999 /* main.m */; };
 		EA41EB9C1E7FAB9F00210999 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA41EB9B1E7FAB9F00210999 /* AppDelegate.m */; };
 		EA41EB9F1E7FAB9F00210999 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA41EB9E1E7FAB9F00210999 /* ViewController.m */; };
@@ -18,6 +19,8 @@
 
 /* Begin PBXFileReference section */
 		EA073C0C1E7FC5EF004B9AF1 /* libTLMediaUtils.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTLMediaUtils.a; path = "../TLMediaUtils/build/Debug-iphoneos/libTLMediaUtils.a"; sourceTree = "<group>"; };
+		EA073C161E7FC817004B9AF1 /* OverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayView.h; sourceTree = "<group>"; };
+		EA073C171E7FC817004B9AF1 /* OverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayView.m; sourceTree = "<group>"; };
 		EA41EB941E7FAB9F00210999 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA41EB981E7FAB9F00210999 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EA41EB9A1E7FAB9F00210999 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -79,6 +82,8 @@
 				EA41EBA51E7FABA000210999 /* LaunchScreen.storyboard */,
 				EA41EBA81E7FABA000210999 /* Info.plist */,
 				EA41EB971E7FAB9F00210999 /* Supporting Files */,
+				EA073C161E7FC817004B9AF1 /* OverlayView.h */,
+				EA073C171E7FC817004B9AF1 /* OverlayView.m */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA41EB9F1E7FAB9F00210999 /* ViewController.m in Sources */,
+				EA073C181E7FC817004B9AF1 /* OverlayView.m in Sources */,
 				EA41EB9C1E7FAB9F00210999 /* AppDelegate.m in Sources */,
 				EA41EB991E7FAB9F00210999 /* main.m in Sources */,
 			);

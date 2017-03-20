@@ -10,6 +10,8 @@
 		EA073C091E7FC582004B9AF1 /* TLBasicCameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA073C061E7FC582004B9AF1 /* TLBasicCameraController.m */; };
 		EA073C0A1E7FC582004B9AF1 /* TLPreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA073C081E7FC582004B9AF1 /* TLPreviewView.m */; };
 		EA073C101E7FC64B004B9AF1 /* TLMediaUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EA073C0F1E7FC64B004B9AF1 /* TLMediaUtils.m */; };
+		EA073C1B1E7FD42C004B9AF1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA073C1A1E7FD42C004B9AF1 /* AVFoundation.framework */; };
+		EA073C1D1E7FD435004B9AF1 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA073C1C1E7FD435004B9AF1 /* CoreMotion.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,6 +34,8 @@
 		EA073C081E7FC582004B9AF1 /* TLPreviewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLPreviewView.m; sourceTree = "<group>"; };
 		EA073C0E1E7FC64B004B9AF1 /* TLMediaUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMediaUtils.h; sourceTree = "<group>"; };
 		EA073C0F1E7FC64B004B9AF1 /* TLMediaUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMediaUtils.m; sourceTree = "<group>"; };
+		EA073C1A1E7FD42C004B9AF1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		EA073C1C1E7FD435004B9AF1 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +43,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA073C1D1E7FD435004B9AF1 /* CoreMotion.framework in Frameworks */,
+				EA073C1B1E7FD42C004B9AF1 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +56,7 @@
 			children = (
 				EA073BFB1E7FC55D004B9AF1 /* TLMediaUtils */,
 				EA073BFA1E7FC55D004B9AF1 /* Products */,
+				EA073C191E7FD42B004B9AF1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,12 +73,37 @@
 			children = (
 				EA073C0E1E7FC64B004B9AF1 /* TLMediaUtils.h */,
 				EA073C0F1E7FC64B004B9AF1 /* TLMediaUtils.m */,
+				EA073C121E7FC6ED004B9AF1 /* Views */,
+				EA073C111E7FC6DB004B9AF1 /* Controllers */,
+			);
+			path = TLMediaUtils;
+			sourceTree = "<group>";
+		};
+		EA073C111E7FC6DB004B9AF1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
 				EA073C051E7FC582004B9AF1 /* TLBasicCameraController.h */,
 				EA073C061E7FC582004B9AF1 /* TLBasicCameraController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		EA073C121E7FC6ED004B9AF1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
 				EA073C071E7FC582004B9AF1 /* TLPreviewView.h */,
 				EA073C081E7FC582004B9AF1 /* TLPreviewView.m */,
 			);
-			path = TLMediaUtils;
+			name = Views;
+			sourceTree = "<group>";
+		};
+		EA073C191E7FD42B004B9AF1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA073C1C1E7FD435004B9AF1 /* CoreMotion.framework */,
+				EA073C1A1E7FD42C004B9AF1 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

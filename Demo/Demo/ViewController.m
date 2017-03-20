@@ -10,8 +10,13 @@
 
 #import "TLBasicCameraController.h"
 #import "TLPreviewView.h"
+#import "OverlayView.h"
 
 @interface ViewController ()
+
+@property (weak, nonatomic) IBOutlet OverlayView *overlayView;
+
+@property (strong, nonatomic) TLBasicCameraController *cameraController;
 
 @end
 
@@ -20,19 +25,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    TLBasicCameraController *cameraController = [[TLBasicCameraController alloc] init];
+    self.cameraController = [[TLBasicCameraController alloc] init];
     
     NSError *error = nil;
-    if ([cameraController setupSession:&error]) {
+    if ([self.cameraController setupSession:&error]) {
         
         TLPreviewView *previewView = [[TLPreviewView alloc] initWithFrame:self.view.bounds];
-        previewView.session = cameraController.captureSession;
-        [self.view addSubview:previewView];
+        previewView.session = self.cameraController.captureSession;
+        [self.view insertSubview:previewView belowSubview:self.overlayView];
         
-        [cameraController startSession];
+        [self.cameraController startSession];
     }
 }
 
+- (IBAction)captureStillImageButtonPressed:(UIButton *)sender {
+    [self.cameraController captureStillImage];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

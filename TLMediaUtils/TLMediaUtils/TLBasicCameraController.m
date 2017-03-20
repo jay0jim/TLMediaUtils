@@ -7,6 +7,9 @@
 //
 
 #import "TLBasicCameraController.h"
+#import <UIKit/UIKit.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <CoreMotion/CoreMotion.h>
 
 @interface TLBasicCameraController ()
 
@@ -30,11 +33,31 @@
  */
 @property (strong, nonatomic) dispatch_queue_t sessionQueue;
 
+/**
+ * CoreMotion: 用于检测设备方向（无论用户是否开启屏幕旋转功能）
+ */
+@property (strong, nonatomic) CMMotionManager *motionManager;
+
+/**
+ * MotionManager所在的queue
+ */
+@property (strong, nonatomic) NSOperationQueue *motionQueue;
+@property (assign, nonatomic) AVCaptureVideoOrientation deviceOrientation;
 
 @end
 
 @implementation TLBasicCameraController
 
+- (instancetype)init {
+    if (self = [super init]) {
+        
+        [self setupMotionManager];
+        
+    }
+    return self;
+}
+
+#pragma mark - Session
 - (BOOL)setupSession:(NSError *__autoreleasing *)error {
     
     self.captureSession = [[AVCaptureSession alloc] init];
@@ -96,6 +119,90 @@
             [self.captureSession stopRunning];
         });
     }
+}
+
+#pragma mark - Capture Still Image
+- (void)captureStillImage {
+    AVCaptureConnection *connection = [self.stillImageOutput connectionWithMediaType:AVMediaTypeVideo];
+    
+    if ([connection isVideoOrientationSupported]) {
+        connection.videoOrientation = self.deviceOrientation;
+    }
+    
+    [self.stillImageOutput captureStillImageAsynchronouslyFromConnection:connection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
+        
+        if (imageDataSampleBuffer != NULL) {
+            NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
+            
+            UIImage *image = [UIImage imageWithData:imageData];
+            [self writeImageToAssetsLibrary:image];
+        }
+    }];
+}
+
+- (void)writeImageToAssetsLibrary:(UIImage *)image {
+    ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
+    
+    [assetsLibrary writeImageToSavedPhotosAlbum:image.CGImage orientation:(NSUInteger)image.imageOrientation completionBlock:^(NSURL *assetURL, NSError *error) {
+        if (!error) {
+            // TODO: to be completed
+        } else {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+    }];
+}
+
+#pragma mark - CoreMotion Orientation
+- (void)setupMotionManager {
+    self.motionManager = [[CMMotionManager alloc] init];
+    self.motionManager.deviceMotionUpdateInterval = 0.5;
+    
+    self.motionQueue = [[NSOperationQueue alloc] init];
+    
+    if (self.motionManager.deviceMotionAvailable) {
+        [self.motionManager startDeviceMotionUpdatesToQueue:self.motionQueue withHandler:^(CMDeviceMotion * _Nullable motion, NSError * _Nullable error) {
+            
+            self.deviceOrientation = [self currentVideoOrientationWithDeviceMotion:motion];
+        }];
+    }
+    
+}
+
+- (AVCaptureVideoOrientation)currentVideoOrientationWithDeviceMotion:(CMDeviceMotion *)motion {
+    AVCaptureVideoOrientation orientation;
+    
+    double x = motion.gravity.x;
+    double y = motion.gravity.y;
+    if (fabs(y) >= fabs(x))
+    {
+        if (y >= 0){
+            // UIDeviceOrientationPortraitUpsideDown;
+            orientation = AVCaptureVideoOrientationPortraitUpsideDown;
+        }
+        else{
+            // UIDeviceOrientationPortrait;
+            orientation = AVCaptureVideoOrientationPortrait;
+        }
+    }
+    else
+    {
+        if (x >= 0){
+            // UIDeviceOrientationLandscapeRight;
+            orientation = AVCaptureVideoOrientationLandscapeLeft;
+        }
+        else{
+            // UIDeviceOrientationLandscapeLeft;
+            orientation = AVCaptureVideoOrientationLandscapeRight;
+        }
+    }
+    
+    return orientation;
+}
+
+
+#pragma mark - dealloc
+- (void)dealloc {
+    [self.motionManager stopDeviceMotionUpdates];
 }
 
 @end

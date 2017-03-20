@@ -17,8 +17,12 @@
  */
 @property (strong, nonatomic) AVCaptureSession *captureSession;
 
+// session
 - (BOOL)setupSession:(NSError **)error;
 - (void)startSession;
 - (void)stopSession;
+
+// capture
+- (void)captureStillImage;
 
 @end
