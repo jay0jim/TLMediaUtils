@@ -123,17 +123,15 @@ NSString *TLFinishSavingVideoNotification = @"VideoSavingDone";
 }
 
 - (void)stopSession {
-    if (self.captureSession.isRunning) {
-        __weak typeof(self) wSelf = self;
-        
-        dispatch_async(self.sessionQueue, ^{
-            typeof(wSelf) sSelf = wSelf;
-            if (!sSelf) {
-                return ;
-            }
-            [sSelf.captureSession stopRunning];
-        });
-    }
+    __weak typeof(self) wSelf = self;
+    
+    dispatch_async(self.sessionQueue, ^{
+        typeof(wSelf) sSelf = wSelf;
+        if (!sSelf) {
+            return ;
+        }
+        [sSelf.captureSession stopRunning];
+    });
 }
 
 #pragma mark - Capture Still Image
@@ -437,7 +435,6 @@ NSString *TLFinishSavingVideoNotification = @"VideoSavingDone";
 #pragma mark - dealloc
 - (void)dealloc {
     [self.motionManager stopDeviceMotionUpdates];
-
 }
 
 @end

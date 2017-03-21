@@ -50,11 +50,16 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSavingNotification:) name:TLFinishSavingVideoNotification object:nil];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.cameraController stopSession];
+}
+
 #pragma mark - Actions
 - (IBAction)captureStillImageButtonPressed:(UIButton *)sender {
     if (self.overlayView.segment.selectedSegmentIndex == 0) {
         [self.cameraController captureStillImage];
         [sender setEnabled:NO];
+        [self.overlayView.backToViewButton setEnabled:NO];
     } else {
         // 录像
         if (self.cameraController.isCapturingVideo) {
@@ -63,6 +68,8 @@
             [sender setEnabled:NO];
         } else {
             [sender setTitle:@"停止" forState:UIControlStateNormal];
+            [self.overlayView.backToViewButton setEnabled:NO];
+            [self.overlayView.switchCamButton setEnabled:NO];
             [self.cameraController startCaptureVideo];
         }
     }
@@ -89,9 +96,11 @@
 #pragma mark - Handle Notifications
 - (void)handleSavingNotification:(NSNotification *)notice {
     [self.overlayView.captureButton setEnabled:YES];
+    [self.overlayView.backToViewButton setEnabled:YES];
+    [self.overlayView.switchCamButton setEnabled:YES];
 }
 
-#pragma mark - 
+#pragma mark -
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }

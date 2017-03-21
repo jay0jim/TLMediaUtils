@@ -9,6 +9,7 @@
 #import "TableViewController.h"
 
 #import "ViewController.h"
+#import "JointVideoViewController.h"
 
 @interface TableViewController ()
 
@@ -21,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.functionNameArray = @[@"基本拍摄、录影", @"视频拼接"];
+    self.functionNameArray = @[@"基本拍摄、录影", @"15s视频拼接"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,6 +52,10 @@
     
     if (indexPath.row == 0) {
         ViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if (indexPath.row == 1) {
+        JointVideoViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"JointVideoViewController"];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

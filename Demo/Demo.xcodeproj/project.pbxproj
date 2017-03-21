@@ -16,6 +16,8 @@
 		EA41EBA41E7FABA000210999 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA41EBA31E7FABA000210999 /* Assets.xcassets */; };
 		EA41EBA71E7FABA000210999 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA41EBA51E7FABA000210999 /* LaunchScreen.storyboard */; };
 		EA5888121E8110CE001447C4 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5888111E8110CE001447C4 /* TableViewController.m */; };
+		EA5888171E811C93001447C4 /* JointVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5888161E811C93001447C4 /* JointVideoViewController.m */; };
+		EA58881A1E811CBE001447C4 /* JointVideoOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5888191E811CBE001447C4 /* JointVideoOverlayView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,10 @@
 		EA41EBA81E7FABA000210999 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA5888101E8110CE001447C4 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		EA5888111E8110CE001447C4 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
+		EA5888151E811C93001447C4 /* JointVideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JointVideoViewController.h; sourceTree = "<group>"; };
+		EA5888161E811C93001447C4 /* JointVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JointVideoViewController.m; sourceTree = "<group>"; };
+		EA5888181E811CBE001447C4 /* JointVideoOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JointVideoOverlayView.h; sourceTree = "<group>"; };
+		EA5888191E811CBE001447C4 /* JointVideoOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JointVideoOverlayView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,19 +82,15 @@
 		EA41EB961E7FAB9F00210999 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				EA5888141E811B0A001447C4 /* Views */,
+				EA5888131E811AE8001447C4 /* Controllers */,
 				EA41EB9A1E7FAB9F00210999 /* AppDelegate.h */,
 				EA41EB9B1E7FAB9F00210999 /* AppDelegate.m */,
-				EA41EB9D1E7FAB9F00210999 /* ViewController.h */,
-				EA41EB9E1E7FAB9F00210999 /* ViewController.m */,
 				EA41EBA01E7FAB9F00210999 /* Main.storyboard */,
 				EA41EBA31E7FABA000210999 /* Assets.xcassets */,
 				EA41EBA51E7FABA000210999 /* LaunchScreen.storyboard */,
 				EA41EBA81E7FABA000210999 /* Info.plist */,
 				EA41EB971E7FAB9F00210999 /* Supporting Files */,
-				EA073C161E7FC817004B9AF1 /* OverlayView.h */,
-				EA073C171E7FC817004B9AF1 /* OverlayView.m */,
-				EA5888101E8110CE001447C4 /* TableViewController.h */,
-				EA5888111E8110CE001447C4 /* TableViewController.m */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -99,6 +101,30 @@
 				EA41EB981E7FAB9F00210999 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EA5888131E811AE8001447C4 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EA41EB9D1E7FAB9F00210999 /* ViewController.h */,
+				EA41EB9E1E7FAB9F00210999 /* ViewController.m */,
+				EA5888101E8110CE001447C4 /* TableViewController.h */,
+				EA5888111E8110CE001447C4 /* TableViewController.m */,
+				EA5888151E811C93001447C4 /* JointVideoViewController.h */,
+				EA5888161E811C93001447C4 /* JointVideoViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		EA5888141E811B0A001447C4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EA073C161E7FC817004B9AF1 /* OverlayView.h */,
+				EA073C171E7FC817004B9AF1 /* OverlayView.m */,
+				EA5888181E811CBE001447C4 /* JointVideoOverlayView.h */,
+				EA5888191E811CBE001447C4 /* JointVideoOverlayView.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,7 +201,9 @@
 			files = (
 				EA41EB9F1E7FAB9F00210999 /* ViewController.m in Sources */,
 				EA073C181E7FC817004B9AF1 /* OverlayView.m in Sources */,
+				EA58881A1E811CBE001447C4 /* JointVideoOverlayView.m in Sources */,
 				EA41EB9C1E7FAB9F00210999 /* AppDelegate.m in Sources */,
+				EA5888171E811C93001447C4 /* JointVideoViewController.m in Sources */,
 				EA5888121E8110CE001447C4 /* TableViewController.m in Sources */,
 				EA41EB991E7FAB9F00210999 /* main.m in Sources */,
 			);
