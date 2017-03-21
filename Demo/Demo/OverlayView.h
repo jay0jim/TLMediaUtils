@@ -11,5 +11,6 @@
 @interface OverlayView : UIView
 
 @property (weak, nonatomic) IBOutlet UIButton *captureButton;
+@property (weak, nonatomic) IBOutlet UIButton *switchCamButton;
 
 @end

@@ -33,6 +33,8 @@
         TLPreviewView *previewView = [[TLPreviewView alloc] initWithFrame:self.view.bounds];
         previewView.session = self.cameraController.captureSession;
         previewView.delegate = self;
+        previewView.tapToFocusEnable = [self.cameraController canFocusAtPoint];
+        previewView.tapToExposeEnable = [self.cameraController canExposeAtPoint];
         [self.view insertSubview:previewView belowSubview:self.overlayView];
 //        [self.view addSubview:previewView];
         
@@ -40,10 +42,16 @@
     }
 }
 
+#pragma mark - Actions
 - (IBAction)captureStillImageButtonPressed:(UIButton *)sender {
     [self.cameraController captureStillImage];
 }
 
+- (IBAction)switchCameraButtonPressed:(UIButton *)sender {
+    [self.cameraController switchCamera];
+}
+
+#pragma mark - TLPreviewViewDelegate Methods
 - (void)previewView:(TLPreviewView *)previewView exposeAtPoint:(CGPoint)point {
     [self.cameraController exposeAtPoint:point];
 }

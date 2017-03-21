@@ -24,4 +24,7 @@
 @property (strong, nonatomic) AVCaptureSession *session;
 @property (weak, nonatomic) id<TLPreviewViewDelegate> delegate;
 
+@property (assign, nonatomic) BOOL tapToFocusEnable;
+@property (assign, nonatomic) BOOL tapToExposeEnable;
+
 @end

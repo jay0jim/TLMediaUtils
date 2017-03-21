@@ -25,15 +25,23 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7SE-DE-E7P">
-                                        <rect key="frame" x="163" y="587" width="50" height="50"/>
+                                        <rect key="frame" x="155" y="572" width="65" height="65"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="DVz-Wt-FoA"/>
-                                            <constraint firstAttribute="width" constant="50" id="m9U-1X-DJC"/>
+                                            <constraint firstAttribute="height" constant="65" id="DVz-Wt-FoA"/>
+                                            <constraint firstAttribute="width" constant="65" id="m9U-1X-DJC"/>
                                         </constraints>
                                         <state key="normal" title="拍照"/>
                                         <connections>
                                             <action selector="captureStillImageButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MkW-hv-LSB"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qlg-fR-Dga">
+                                        <rect key="frame" x="319" y="590" width="31" height="30"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="切换"/>
+                                        <connections>
+                                            <action selector="switchCameraButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dZd-If-IbY"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -41,9 +49,12 @@
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="7SE-DE-E7P" secondAttribute="bottom" constant="30" id="6Cg-Hj-6hr"/>
                                     <constraint firstItem="7SE-DE-E7P" firstAttribute="centerX" secondItem="Vqc-8S-f2m" secondAttribute="centerX" id="8Ht-l3-fXG"/>
+                                    <constraint firstAttribute="trailing" secondItem="Qlg-fR-Dga" secondAttribute="trailing" constant="25" id="HGs-De-QPe"/>
+                                    <constraint firstItem="7SE-DE-E7P" firstAttribute="centerY" secondItem="Qlg-fR-Dga" secondAttribute="centerY" id="N49-AZ-8DM"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="captureButton" destination="7SE-DE-E7P" id="Z2G-cT-cHE"/>
+                                    <outlet property="switchCamButton" destination="Qlg-fR-Dga" id="R9C-oc-uWA"/>
                                 </connections>
                             </view>
                         </subviews>

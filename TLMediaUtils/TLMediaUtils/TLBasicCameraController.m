@@ -200,36 +200,145 @@
 }
 
 #pragma mark - Focus & Expose
+- (BOOL)canFocusAtPoint {
+    AVCaptureDevice *device = self.currentInput.device;
+    
+    return (device.isFocusPointOfInterestSupported && [device isFocusModeSupported:AVCaptureFocusModeAutoFocus]);
+}
+
+- (BOOL)canExposeAtPoint {
+    AVCaptureDevice *device = self.currentInput.device;
+    
+    return (device.isExposurePointOfInterestSupported && [device isExposureModeSupported:AVCaptureExposureModeAutoExpose]);
+}
+
 - (void)focusAtPoint:(CGPoint)point {
     AVCaptureDevice *device = self.currentInput.device;
     
-    if (device.isFocusPointOfInterestSupported && [device isFocusModeSupported:AVCaptureFocusModeAutoFocus]) {
-        
-        NSError *error;
-        if ([device lockForConfiguration:&error]) {
-            [device setFocusMode:AVCaptureFocusModeAutoFocus];
-            [device setFocusPointOfInterest:point];
-            [device unlockForConfiguration];
-        } else {
-            NSLog(@"%@", [error localizedDescription]);
+    __weak typeof(self) wSelf = self;
+    
+    dispatch_async(self.sessionQueue, ^{
+        typeof(wSelf) sSelf = wSelf;
+        if (!sSelf) {
+            return ;
         }
-    }
+        if ([sSelf canFocusAtPoint]) {
+            NSError *error;
+            if ([device lockForConfiguration:&error]) {
+                
+                // 一定要先设置位置，再设置模式
+                // 否则会出现对焦的位置是上一次点击的位置
+                // 曝光同理
+                [device setFocusPointOfInterest:point];
+                [device setFocusMode:AVCaptureFocusModeAutoFocus];
+                
+                [device unlockForConfiguration];
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"%@", [error localizedDescription]);
+                });
+            }
+        }
+    });
+    
 }
 
 - (void)exposeAtPoint:(CGPoint)point {
     AVCaptureDevice *device = self.currentInput.device;
     
-    if (device.isExposurePointOfInterestSupported && [device isExposureModeSupported:AVCaptureExposureModeAutoExpose]) {
+    NSLog(@"%@", NSStringFromCGPoint(point));
+    
+    __weak typeof(self) wSelf = self;
+    
+    dispatch_async(self.sessionQueue, ^{
+        typeof(wSelf) sSelf = wSelf;
+        if (!sSelf) {
+            return ;
+        }
+        if ([sSelf canExposeAtPoint]) {
+            
+            NSError *error;
+            if ([device lockForConfiguration:&error]) {
+                [device setExposurePointOfInterest:point];
+                [device setExposureMode:AVCaptureExposureModeAutoExpose];
+                
+                [device unlockForConfiguration];
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"%@", [error localizedDescription]);
+                });
+            }
+        }
+    });
+}
+
+#pragma mark - Switch Camera
+- (BOOL)isSwitchCameraSupported {
+    NSUInteger cameraCount = [[AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo] count];
+    return cameraCount > 1;
+}
+
+- (void)switchCamera {
+    AVCaptureDevice *device = self.currentInput.device;
+    __block AVCaptureDevice *newDevice = nil;
+    
+    __weak typeof(self) wSelf = self;
+    
+    if ([self isSwitchCameraSupported]) {
         
-        NSError *error;
-        if ([device lockForConfiguration:&error]) {
-            [device setExposureMode:AVCaptureExposureModeAutoExpose];
-            [device setExposurePointOfInterest:point];
-            [device unlockForConfiguration];
-        } else {
-            NSLog(@"%@", [error localizedDescription]);
+        dispatch_async(self.sessionQueue, ^{
+            typeof(wSelf) sSelf = wSelf;
+            if (!sSelf) {
+                return ;
+            }
+            
+            if (device.position == AVCaptureDevicePositionFront) {
+                newDevice = [sSelf deviceForPosition:AVCaptureDevicePositionBack];
+            }
+            if (device.position == AVCaptureDevicePositionBack) {
+                newDevice = [sSelf deviceForPosition:AVCaptureDevicePositionFront];
+            }
+            
+            AVCaptureDeviceInput *newInput = [AVCaptureDeviceInput deviceInputWithDevice:newDevice error:nil];
+            if (newInput) {
+                [sSelf.captureSession beginConfiguration];
+                
+                [sSelf.captureSession removeInput:sSelf.currentInput];
+                if ([sSelf.captureSession canAddInput:newInput]) {
+                    [sSelf.captureSession addInput:newInput];
+                    sSelf.currentInput = newInput;
+                } else {
+                    // 如果无法添加新deviceInput，则把原来的deviceInput重新添加
+                    [sSelf.captureSession addInput:sSelf.currentInput];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        NSLog(@"Cannot switch camera - cannot add new input.");
+                    });
+                }
+                
+                [sSelf.captureSession commitConfiguration];
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"Cannot switch camera - cannot get new input.");
+                });
+            }
+            
+        });
+        
+    } else {
+        NSLog(@"Cannot switch camera - no more camera.");
+    }
+    
+}
+
+- (AVCaptureDevice *)deviceForPosition:(AVCaptureDevicePosition)position {
+    NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    for (AVCaptureDevice *device in devices) {
+        if (device.position == position) {
+            return device;
         }
     }
+    
+    return nil;
 }
 
 #pragma mark - dealloc

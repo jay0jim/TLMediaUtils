@@ -26,7 +26,24 @@
 - (void)captureStillImage;
 
 // focus and expose
+- (BOOL)canFocusAtPoint;
+- (BOOL)canExposeAtPoint;
 - (void)focusAtPoint:(CGPoint)point;
 - (void)exposeAtPoint:(CGPoint)point;
 
+// switch camera
+- (BOOL)isSwitchCameraSupported;
+- (void)switchCamera;
+
 @end
+
+
+
+
+
+
+
+
+
+
+
