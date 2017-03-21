@@ -25,6 +25,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationController.navigationBarHidden = YES;
+    
     self.cameraController = [[TLBasicCameraController alloc] init];
     
     NSError *error = nil;
@@ -70,6 +72,11 @@
     [self.cameraController switchCamera];
 }
 
+- (IBAction)backToViewButtonPressed:(UIButton *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+    self.navigationController.navigationBarHidden = NO;
+}
+
 #pragma mark - TLPreviewViewDelegate Methods
 - (void)previewView:(TLPreviewView *)previewView exposeAtPoint:(CGPoint)point {
     [self.cameraController exposeAtPoint:point];
@@ -82,6 +89,11 @@
 #pragma mark - Handle Notifications
 - (void)handleSavingNotification:(NSNotification *)notice {
     [self.overlayView.captureButton setEnabled:YES];
+}
+
+#pragma mark - 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {

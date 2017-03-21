@@ -18,7 +18,9 @@
     
     BOOL segmentFlag = [self.segment pointInside:[self convertPoint:point toView:self.segment] withEvent:event];
     
-    if (captureButtonFlag || switchCamButtonFlag || segmentFlag) {
+    BOOL backFlag = [self.backToViewButton pointInside:[self convertPoint:point toView:self.backToViewButton] withEvent:event];
+    
+    if (captureButtonFlag || switchCamButtonFlag || segmentFlag || backFlag) {
         return YES;
     }
     

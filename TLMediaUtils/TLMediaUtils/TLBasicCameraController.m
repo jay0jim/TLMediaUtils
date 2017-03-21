@@ -110,16 +110,28 @@ NSString *TLFinishSavingVideoNotification = @"VideoSavingDone";
 
 - (void)startSession {
     if (!self.captureSession.isRunning) {
+        __weak typeof(self) wSelf = self;
+        
         dispatch_async(self.sessionQueue, ^{
-            [self.captureSession startRunning];
+            typeof(wSelf) sSelf = wSelf;
+            if (!sSelf) {
+                return ;
+            }
+            [sSelf.captureSession startRunning];
         });
     }
 }
 
 - (void)stopSession {
     if (self.captureSession.isRunning) {
+        __weak typeof(self) wSelf = self;
+        
         dispatch_async(self.sessionQueue, ^{
-            [self.captureSession stopRunning];
+            typeof(wSelf) sSelf = wSelf;
+            if (!sSelf) {
+                return ;
+            }
+            [sSelf.captureSession stopRunning];
         });
     }
 }
@@ -132,13 +144,19 @@ NSString *TLFinishSavingVideoNotification = @"VideoSavingDone";
         connection.videoOrientation = self.deviceOrientation;
     }
     
+    __weak typeof(self) wSelf = self;
     [self.stillImageOutput captureStillImageAsynchronouslyFromConnection:connection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
+        
+        typeof(wSelf) sSelf = wSelf;
+        if (!sSelf) {
+            return ;
+        }
         
         if (imageDataSampleBuffer != NULL) {
             NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
             
             UIImage *image = [UIImage imageWithData:imageData];
-            [self writeImageToAssetsLibrary:image];
+            [sSelf writeImageToAssetsLibrary:image];
         }
     }];
 }
@@ -231,9 +249,15 @@ NSString *TLFinishSavingVideoNotification = @"VideoSavingDone";
     self.motionQueue = [[NSOperationQueue alloc] init];
     
     if (self.motionManager.deviceMotionAvailable) {
+        
+        __weak typeof(self) wSelf = self;
+        
         [self.motionManager startDeviceMotionUpdatesToQueue:self.motionQueue withHandler:^(CMDeviceMotion * _Nullable motion, NSError * _Nullable error) {
-            
-            self.deviceOrientation = [self currentVideoOrientationWithDeviceMotion:motion];
+            typeof(wSelf) sSelf = wSelf;
+            if (!sSelf) {
+                return ;
+            }
+            sSelf.deviceOrientation = [sSelf currentVideoOrientationWithDeviceMotion:motion];
         }];
     }
     
@@ -413,6 +437,7 @@ NSString *TLFinishSavingVideoNotification = @"VideoSavingDone";
 #pragma mark - dealloc
 - (void)dealloc {
     [self.motionManager stopDeviceMotionUpdates];
+
 }
 
 @end
