@@ -11,7 +11,10 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <CoreMotion/CoreMotion.h>
 
-@interface TLBasicCameraController ()
+NSString *TLFinishSavingImageNotification = @"ImageSavingDone";
+NSString *TLFinishSavingVideoNotification = @"VideoSavingDone";
+
+@interface TLBasicCameraController () <AVCaptureFileOutputRecordingDelegate>
 
 /**
  * 使用中的device input，更换前后摄像头（如果有）需要用到
@@ -145,11 +148,79 @@
     
     [assetsLibrary writeImageToSavedPhotosAlbum:image.CGImage orientation:(NSUInteger)image.imageOrientation completionBlock:^(NSURL *assetURL, NSError *error) {
         if (!error) {
-            // TODO: to be completed
+            [[NSNotificationCenter defaultCenter] postNotificationName:TLFinishSavingImageNotification object:nil];
         } else {
             NSLog(@"%@", [error localizedDescription]);
         }
     }];
+}
+
+#pragma mark - Capture Video
+- (BOOL)isCapturingVideo {
+    return self.movieOutput.isRecording;
+}
+
+- (NSURL *)tempFileURL {
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSString *path = NSTemporaryDirectory();
+    NSString *filePath = [path stringByAppendingPathComponent:@"tempMovie.mov"];
+    return [NSURL fileURLWithPath:filePath];
+}
+
+- (void)startCaptureVideo {
+    if (!self.isCapturingVideo) {
+        AVCaptureConnection *connection = [self.movieOutput connectionWithMediaType:AVMediaTypeVideo];
+        
+        if ([connection isVideoOrientationSupported]) {
+            connection.videoOrientation = [self deviceOrientation];
+        }
+        
+        if ([connection isVideoStabilizationSupported]) {
+            [connection setPreferredVideoStabilizationMode:AVCaptureVideoStabilizationModeAuto];
+        }
+        
+        AVCaptureDevice *device = self.currentInput.device;
+        if (device.isSmoothAutoFocusSupported) {
+            NSError *error;
+            if ([device lockForConfiguration:&error]) {
+                [device setSmoothAutoFocusEnabled:YES];
+                [device unlockForConfiguration];
+            } else {
+                NSLog(@"%@", [error localizedDescription]);
+            }
+        }
+        
+        [self.movieOutput startRecordingToOutputFileURL:[self tempFileURL] recordingDelegate:self];
+    }
+}
+
+- (void)stopCaptureVideo {
+    if (self.isCapturingVideo) {
+        [self.movieOutput stopRecording];
+    }
+}
+
+// AVCaptureFileOutputRecordingDelegate Methods
+- (void)captureOutput:(AVCaptureFileOutput *)captureOutput didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL fromConnections:(NSArray *)connections error:(NSError *)error {
+    
+    if (!error) {
+        [self writeVideoToAssetsLibrary:outputFileURL];
+    } else {
+        NSLog(@"%@", [error localizedDescription]);
+    }
+}
+
+- (void)writeVideoToAssetsLibrary:(NSURL *)fileURL {
+    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+    
+    if ([library videoAtPathIsCompatibleWithSavedPhotosAlbum:fileURL]) {
+        
+        [library writeVideoAtPathToSavedPhotosAlbum:fileURL completionBlock:^(NSURL *assetURL, NSError *error) {
+            if (!error) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:TLFinishSavingVideoNotification object:nil];
+            }
+        }];
+    }
 }
 
 #pragma mark - CoreMotion Orientation
@@ -245,8 +316,6 @@
 
 - (void)exposeAtPoint:(CGPoint)point {
     AVCaptureDevice *device = self.currentInput.device;
-    
-    NSLog(@"%@", NSStringFromCGPoint(point));
     
     __weak typeof(self) wSelf = self;
     

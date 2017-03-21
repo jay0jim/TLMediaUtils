@@ -16,11 +16,27 @@
     
     BOOL switchCamButtonFlag = [self.switchCamButton pointInside:[self convertPoint:point toView:self.switchCamButton] withEvent:event];
     
-    if (captureButtonFlag || switchCamButtonFlag) {
+    BOOL segmentFlag = [self.segment pointInside:[self convertPoint:point toView:self.segment] withEvent:event];
+    
+    if (captureButtonFlag || switchCamButtonFlag || segmentFlag) {
         return YES;
     }
     
     return NO;
+}
+
+- (IBAction)segmentValueChanged:(UISegmentedControl *)sender {
+    switch (sender.selectedSegmentIndex) {
+        case 0:
+            // 拍照
+            [self.captureButton setTitle:@"拍照" forState:UIControlStateNormal];
+            break;
+            
+        case 1:
+            // 录像
+            [self.captureButton setTitle:@"录影" forState:UIControlStateNormal];
+            break;
+    }
 }
 
 @end

@@ -33,18 +33,37 @@
         TLPreviewView *previewView = [[TLPreviewView alloc] initWithFrame:self.view.bounds];
         previewView.session = self.cameraController.captureSession;
         previewView.delegate = self;
+        
         previewView.tapToFocusEnable = [self.cameraController canFocusAtPoint];
         previewView.tapToExposeEnable = [self.cameraController canExposeAtPoint];
+        
         [self.view insertSubview:previewView belowSubview:self.overlayView];
-//        [self.view addSubview:previewView];
+        
+        self.overlayView.switchCamButton.hidden = !self.cameraController.isSwitchCameraSupported;
         
         [self.cameraController startSession];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSavingNotification:) name:TLFinishSavingImageNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSavingNotification:) name:TLFinishSavingVideoNotification object:nil];
 }
 
 #pragma mark - Actions
 - (IBAction)captureStillImageButtonPressed:(UIButton *)sender {
-    [self.cameraController captureStillImage];
+    if (self.overlayView.segment.selectedSegmentIndex == 0) {
+        [self.cameraController captureStillImage];
+        [sender setEnabled:NO];
+    } else {
+        // 录像
+        if (self.cameraController.isCapturingVideo) {
+            [self.cameraController stopCaptureVideo];
+            [sender setTitle:@"录像" forState:UIControlStateNormal];
+            [sender setEnabled:NO];
+        } else {
+            [sender setTitle:@"停止" forState:UIControlStateNormal];
+            [self.cameraController startCaptureVideo];
+        }
+    }
 }
 
 - (IBAction)switchCameraButtonPressed:(UIButton *)sender {
@@ -58,6 +77,11 @@
 
 - (void)previewView:(TLPreviewView *)previewView focusAtPoint:(CGPoint)point {
     [self.cameraController focusAtPoint:point];
+}
+
+#pragma mark - Handle Notifications
+- (void)handleSavingNotification:(NSNotification *)notice {
+    [self.overlayView.captureButton setEnabled:YES];
 }
 
 - (void)didReceiveMemoryWarning {

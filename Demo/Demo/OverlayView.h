@@ -12,5 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *captureButton;
 @property (weak, nonatomic) IBOutlet UIButton *switchCamButton;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segment;
 
 @end

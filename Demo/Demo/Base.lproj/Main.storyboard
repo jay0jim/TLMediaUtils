@@ -44,16 +44,29 @@
                                             <action selector="switchCameraButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dZd-If-IbY"/>
                                         </connections>
                                     </button>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="8gN-XG-kl7">
+                                        <rect key="frame" x="146" y="21" width="83" height="29"/>
+                                        <segments>
+                                            <segment title="拍照"/>
+                                            <segment title="录像"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="segmentValueChanged:" destination="Vqc-8S-f2m" eventType="valueChanged" id="hw3-Ff-OWQ"/>
+                                        </connections>
+                                    </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="8gN-XG-kl7" firstAttribute="top" secondItem="Vqc-8S-f2m" secondAttribute="top" constant="21" id="4Db-OT-7Nl"/>
                                     <constraint firstAttribute="bottom" secondItem="7SE-DE-E7P" secondAttribute="bottom" constant="30" id="6Cg-Hj-6hr"/>
                                     <constraint firstItem="7SE-DE-E7P" firstAttribute="centerX" secondItem="Vqc-8S-f2m" secondAttribute="centerX" id="8Ht-l3-fXG"/>
                                     <constraint firstAttribute="trailing" secondItem="Qlg-fR-Dga" secondAttribute="trailing" constant="25" id="HGs-De-QPe"/>
                                     <constraint firstItem="7SE-DE-E7P" firstAttribute="centerY" secondItem="Qlg-fR-Dga" secondAttribute="centerY" id="N49-AZ-8DM"/>
+                                    <constraint firstItem="8gN-XG-kl7" firstAttribute="centerX" secondItem="Vqc-8S-f2m" secondAttribute="centerX" id="Xi4-bD-vlA"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="captureButton" destination="7SE-DE-E7P" id="Z2G-cT-cHE"/>
+                                    <outlet property="segment" destination="8gN-XG-kl7" id="KmF-aX-BoT"/>
                                     <outlet property="switchCamButton" destination="Qlg-fR-Dga" id="R9C-oc-uWA"/>
                                 </connections>
                             </view>

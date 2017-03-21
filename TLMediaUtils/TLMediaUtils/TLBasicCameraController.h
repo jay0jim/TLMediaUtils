@@ -10,6 +10,9 @@
 
 #import <AVFoundation/AVFoundation.h>
 
+extern NSString *TLFinishSavingImageNotification;
+extern NSString *TLFinishSavingVideoNotification;
+
 @interface TLBasicCameraController : NSObject
 
 /**
@@ -17,13 +20,19 @@
  */
 @property (strong, nonatomic) AVCaptureSession *captureSession;
 
+@property (assign, nonatomic, readonly) BOOL isCapturingVideo;
+
 // session
 - (BOOL)setupSession:(NSError **)error;
 - (void)startSession;
 - (void)stopSession;
 
-// capture
+// capture still image
 - (void)captureStillImage;
+
+// capture video
+- (void)startCaptureVideo;
+- (void)stopCaptureVideo;
 
 // focus and expose
 - (BOOL)canFocusAtPoint;
