@@ -10,6 +10,7 @@
 
 NSString *TLFinishSavingImageNotification = @"ImageSavingDone";
 NSString *TLFinishSavingVideoNotification = @"VideoSavingDone";
+NSString *TLSavingErrorNotification = @"SavingError";
 
 @interface FileSavingManager ()
 
@@ -28,6 +29,14 @@ NSString *TLFinishSavingVideoNotification = @"VideoSavingDone";
         self.savingQueue = dispatch_queue_create("savingQueue", NULL);
     }
     return self;
+}
+
++ (NSURL *)urlWithFileName:(NSString *)fileName {
+    NSString *path = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString *filePath = [path stringByAppendingPathComponent:fileName];
+    
+    NSURL *fileURL = [NSURL fileURLWithPath:filePath];
+    return fileURL;
 }
 
 #pragma mark - Write to AssetsLibrary
@@ -56,44 +65,51 @@ NSString *TLFinishSavingVideoNotification = @"VideoSavingDone";
 
 #pragma mark - Write to URL
 - (void)writeJPEGImage:(UIImage *)image ToURL:(NSURL *)fileURL {
-    if (!fileURL) {
-        return;
+    if (fileURL) {
+        dispatch_async(self.savingQueue, ^{
+            NSData *imageData = UIImageJPEGRepresentation(image, 1);
+            
+            if (![imageData writeToURL:fileURL atomically:YES]) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"Cannot save image to URL.");
+                });
+                [[NSNotificationCenter defaultCenter] postNotificationName:TLSavingErrorNotification object:nil];
+            } else {
+                [[NSNotificationCenter defaultCenter] postNotificationName:TLFinishSavingImageNotification object:nil];
+            }
+        });
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:TLSavingErrorNotification object:nil];
     }
-    dispatch_async(self.savingQueue, ^{
-        NSData *imageData = UIImageJPEGRepresentation(image, 1);
-        
-        if ([imageData writeToURL:fileURL atomically:YES]) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:TLFinishSavingImageNotification object:nil];
-        } else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"Cannot save image to URL.");
-            });
-        }
-    });
-    
 }
 
 - (void)writeVideoFromURL:(NSURL *)fromURL ToURL:(NSURL *)fileURL {
-    if (!fromURL || !fileURL) {
-        return;
-    }
-    
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     NSString *fromPath = [fromURL path];
     NSString *toPath = [fileURL path];
     
-    if ([fromPath isEqualToString:toPath]) {
-        NSLog(@"File has existed.");
+    if (!fromURL || !fileURL) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:TLSavingErrorNotification object:nil];
         return;
     }
     
+    [fileManager removeItemAtURL:fileURL error:nil];
+    
     if ([fileManager fileExistsAtPath:fromPath]) {
         dispatch_async(self.savingQueue, ^{
-            if ([fileManager copyItemAtURL:fromURL toURL:fileURL error:nil]) {
+            NSError *error;
+            if ([fileManager copyItemAtURL:fromURL toURL:fileURL error:&error]) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:TLFinishSavingVideoNotification object:nil];
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(@"%@", [error localizedDescription]);
+                });
+                [[NSNotificationCenter defaultCenter] postNotificationName:TLSavingErrorNotification object:nil];
             }
         });
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:TLSavingErrorNotification object:nil];
     }
 }
 

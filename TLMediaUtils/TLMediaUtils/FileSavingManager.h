@@ -13,8 +13,17 @@
 
 extern NSString *TLFinishSavingImageNotification;
 extern NSString *TLFinishSavingVideoNotification;
+extern NSString *TLSavingErrorNotification;
 
 @interface FileSavingManager : NSObject
+
+/**
+ * 在Document目录后接文件名
+
+ @param fileName 文件名
+ @return 包含文件名的fileURL
+ */
++ (NSURL *)urlWithFileName:(NSString *)fileName;
 
 - (void)writeImageToAssetsLibrary:(UIImage *)image;
 - (void)writeVideoToAssetsLibrary:(NSURL *)fileURL;

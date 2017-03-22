@@ -31,6 +31,8 @@
     self.cameraController = [[TLBasicCameraController alloc] init];
     self.cameraController.isSaveVideoToLibrary = YES;
     self.cameraController.isSaveImageToLibrary = YES;
+    self.cameraController.outputImageURL = [FileSavingManager urlWithFileName:@"test.jpg"];
+    self.cameraController.outputVideoURL = [FileSavingManager urlWithFileName:@"testVideo.mov"];
     
     NSError *error = nil;
     if ([self.cameraController setupSession:&error]) {
@@ -51,7 +53,9 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSavingNotification:) name:TLFinishSavingImageNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSavingNotification:) name:TLFinishSavingVideoNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleSavingNotification:) name:TLSavingErrorNotification object:nil];
 }
+
 
 - (void)viewWillDisappear:(BOOL)animated {
     [self.cameraController stopSession];
@@ -99,10 +103,12 @@
 
 #pragma mark - Handle Notifications
 - (void)handleSavingNotification:(NSNotification *)notice {
-    [self.overlayView.captureButton setEnabled:YES];
-    [self.overlayView.backToViewButton setEnabled:YES];
-    [self.overlayView.switchCamButton setEnabled:YES];
-    [self.overlayView.segment setHidden:NO];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.overlayView.captureButton setEnabled:YES];
+        [self.overlayView.backToViewButton setEnabled:YES];
+        [self.overlayView.switchCamButton setEnabled:YES];
+        [self.overlayView.segment setHidden:NO];
+    });
 }
 
 #pragma mark -
