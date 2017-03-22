@@ -12,6 +12,7 @@
 		EA073C101E7FC64B004B9AF1 /* TLMediaUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EA073C0F1E7FC64B004B9AF1 /* TLMediaUtils.m */; };
 		EA073C1B1E7FD42C004B9AF1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA073C1A1E7FD42C004B9AF1 /* AVFoundation.framework */; };
 		EA073C1D1E7FD435004B9AF1 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA073C1C1E7FD435004B9AF1 /* CoreMotion.framework */; };
+		EA8B8D4F1E82BFE0006C0B08 /* FileSavingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8B8D4E1E82BFE0006C0B08 /* FileSavingManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,6 +37,9 @@
 		EA073C0F1E7FC64B004B9AF1 /* TLMediaUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMediaUtils.m; sourceTree = "<group>"; };
 		EA073C1A1E7FD42C004B9AF1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EA073C1C1E7FD435004B9AF1 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		EA8B8D4D1E82BFE0006C0B08 /* FileSavingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileSavingManager.h; sourceTree = "<group>"; };
+		EA8B8D4E1E82BFE0006C0B08 /* FileSavingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileSavingManager.m; sourceTree = "<group>"; };
+		EA8B8D501E82C050006C0B08 /* testPic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = testPic.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,7 @@
 		EA073BF01E7FC55D004B9AF1 = {
 			isa = PBXGroup;
 			children = (
+				EA8B8D501E82C050006C0B08 /* testPic.jpg */,
 				EA073BFB1E7FC55D004B9AF1 /* TLMediaUtils */,
 				EA073BFA1E7FC55D004B9AF1 /* Products */,
 				EA073C191E7FD42B004B9AF1 /* Frameworks */,
@@ -73,6 +78,7 @@
 			children = (
 				EA073C0E1E7FC64B004B9AF1 /* TLMediaUtils.h */,
 				EA073C0F1E7FC64B004B9AF1 /* TLMediaUtils.m */,
+				EA8B8D4C1E82BFBA006C0B08 /* Utils */,
 				EA073C121E7FC6ED004B9AF1 /* Views */,
 				EA073C111E7FC6DB004B9AF1 /* Controllers */,
 			);
@@ -104,6 +110,15 @@
 				EA073C1A1E7FD42C004B9AF1 /* AVFoundation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA8B8D4C1E82BFBA006C0B08 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				EA8B8D4D1E82BFE0006C0B08 /* FileSavingManager.h */,
+				EA8B8D4E1E82BFE0006C0B08 /* FileSavingManager.m */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,6 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA073C101E7FC64B004B9AF1 /* TLMediaUtils.m in Sources */,
+				EA8B8D4F1E82BFE0006C0B08 /* FileSavingManager.m in Sources */,
 				EA073C091E7FC582004B9AF1 /* TLBasicCameraController.m in Sources */,
 				EA073C0A1E7FC582004B9AF1 /* TLPreviewView.m in Sources */,
 			);
@@ -300,6 +316,7 @@
 				EA073C041E7FC55D004B9AF1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

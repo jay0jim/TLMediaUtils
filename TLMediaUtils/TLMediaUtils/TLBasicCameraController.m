@@ -10,9 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <CoreMotion/CoreMotion.h>
-
-NSString *TLFinishSavingImageNotification = @"ImageSavingDone";
-NSString *TLFinishSavingVideoNotification = @"VideoSavingDone";
+#import "FileSavingManager.h"
 
 @interface TLBasicCameraController () <AVCaptureFileOutputRecordingDelegate>
 
@@ -47,6 +45,11 @@ NSString *TLFinishSavingVideoNotification = @"VideoSavingDone";
 @property (strong, nonatomic) NSOperationQueue *motionQueue;
 @property (assign, nonatomic) AVCaptureVideoOrientation deviceOrientation;
 
+/**
+ * 保存图片和视频
+ */
+@property (strong, nonatomic) FileSavingManager *savingManager;
+
 @end
 
 @implementation TLBasicCameraController
@@ -55,6 +58,8 @@ NSString *TLFinishSavingVideoNotification = @"VideoSavingDone";
     if (self = [super init]) {
         
         [self setupMotionManager];
+        
+        self.savingManager = [[FileSavingManager alloc] init];
         
     }
     return self;
@@ -154,19 +159,19 @@ NSString *TLFinishSavingVideoNotification = @"VideoSavingDone";
             NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
             
             UIImage *image = [UIImage imageWithData:imageData];
-            [sSelf writeImageToAssetsLibrary:image];
-        }
-    }];
-}
-
-- (void)writeImageToAssetsLibrary:(UIImage *)image {
-    ALAssetsLibrary *assetsLibrary = [[ALAssetsLibrary alloc] init];
-    
-    [assetsLibrary writeImageToSavedPhotosAlbum:image.CGImage orientation:(NSUInteger)image.imageOrientation completionBlock:^(NSURL *assetURL, NSError *error) {
-        if (!error) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:TLFinishSavingImageNotification object:nil];
-        } else {
-            NSLog(@"%@", [error localizedDescription]);
+            
+            if (sSelf.isSaveImageToLibrary) {
+                [sSelf.savingManager writeImageToAssetsLibrary:image];
+            }
+            
+            // outputImageURL不为空表示需要保存到另外的地方
+            // 如果不需要保存到其他地方则直接发送 TLFinishSavingImageNotification
+            if (sSelf.outputImageURL) {
+                [sSelf.savingManager writeJPEGImage:image ToURL:self.outputImageURL];
+            } else {
+                [[NSNotificationCenter defaultCenter] postNotificationName:TLFinishSavingImageNotification object:nil];
+            }
+            
         }
     }];
 }
@@ -220,22 +225,20 @@ NSString *TLFinishSavingVideoNotification = @"VideoSavingDone";
 - (void)captureOutput:(AVCaptureFileOutput *)captureOutput didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL fromConnections:(NSArray *)connections error:(NSError *)error {
     
     if (!error) {
-        [self writeVideoToAssetsLibrary:outputFileURL];
+        
+        if (self.isSaveVideoToLibrary) {
+            [self.savingManager writeVideoToAssetsLibrary:outputFileURL];
+        }
+        
+        // outputVideoURL不为空表示需要保存到另外的地方
+        // 如果不需要保存到其他地方则直接发送 TLFinishSavingVideoNotification
+        if (self.outputVideoURL) {
+            [self.savingManager writeVideoFromURL:outputFileURL ToURL:self.outputVideoURL];
+        } else {
+            [[NSNotificationCenter defaultCenter] postNotificationName:TLFinishSavingVideoNotification object:nil];
+        }
     } else {
         NSLog(@"%@", [error localizedDescription]);
-    }
-}
-
-- (void)writeVideoToAssetsLibrary:(NSURL *)fileURL {
-    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-    
-    if ([library videoAtPathIsCompatibleWithSavedPhotosAlbum:fileURL]) {
-        
-        [library writeVideoAtPathToSavedPhotosAlbum:fileURL completionBlock:^(NSURL *assetURL, NSError *error) {
-            if (!error) {
-                [[NSNotificationCenter defaultCenter] postNotificationName:TLFinishSavingVideoNotification object:nil];
-            }
-        }];
     }
 }
 

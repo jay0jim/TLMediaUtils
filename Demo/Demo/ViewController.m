@@ -11,6 +11,7 @@
 #import "TLBasicCameraController.h"
 #import "TLPreviewView.h"
 #import "OverlayView.h"
+#import <FileSavingManager.h>
 
 @interface ViewController () <TLPreviewViewDelegate>
 
@@ -28,6 +29,8 @@
     self.navigationController.navigationBarHidden = YES;
     
     self.cameraController = [[TLBasicCameraController alloc] init];
+    self.cameraController.isSaveVideoToLibrary = YES;
+    self.cameraController.isSaveImageToLibrary = YES;
     
     NSError *error = nil;
     if ([self.cameraController setupSession:&error]) {
@@ -70,6 +73,7 @@
             [sender setTitle:@"停止" forState:UIControlStateNormal];
             [self.overlayView.backToViewButton setEnabled:NO];
             [self.overlayView.switchCamButton setEnabled:NO];
+            [self.overlayView.segment setHidden:YES];
             [self.cameraController startCaptureVideo];
         }
     }
@@ -98,6 +102,7 @@
     [self.overlayView.captureButton setEnabled:YES];
     [self.overlayView.backToViewButton setEnabled:YES];
     [self.overlayView.switchCamButton setEnabled:YES];
+    [self.overlayView.segment setHidden:NO];
 }
 
 #pragma mark -
