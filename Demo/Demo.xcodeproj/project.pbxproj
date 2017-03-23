@@ -18,6 +18,8 @@
 		EA5888121E8110CE001447C4 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5888111E8110CE001447C4 /* TableViewController.m */; };
 		EA5888171E811C93001447C4 /* JointVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5888161E811C93001447C4 /* JointVideoViewController.m */; };
 		EA58881A1E811CBE001447C4 /* JointVideoOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA5888191E811CBE001447C4 /* JointVideoOverlayView.m */; };
+		EA61A6DE1E8361B700A9FC8A /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA61A6DD1E8361B700A9FC8A /* FilterViewController.m */; };
+		EA61A6E11E83657100A9FC8A /* testPic.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EA61A6E01E83657100A9FC8A /* testPic.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,9 @@
 		EA5888161E811C93001447C4 /* JointVideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JointVideoViewController.m; sourceTree = "<group>"; };
 		EA5888181E811CBE001447C4 /* JointVideoOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JointVideoOverlayView.h; sourceTree = "<group>"; };
 		EA5888191E811CBE001447C4 /* JointVideoOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JointVideoOverlayView.m; sourceTree = "<group>"; };
+		EA61A6DC1E8361B700A9FC8A /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterViewController.h; sourceTree = "<group>"; };
+		EA61A6DD1E8361B700A9FC8A /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
+		EA61A6E01E83657100A9FC8A /* testPic.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = testPic.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +70,7 @@
 		EA41EB8B1E7FAB9F00210999 = {
 			isa = PBXGroup;
 			children = (
+				EA61A6E01E83657100A9FC8A /* testPic.jpg */,
 				EA41EB961E7FAB9F00210999 /* Demo */,
 				EA41EB951E7FAB9F00210999 /* Products */,
 				EA073C0B1E7FC5EF004B9AF1 /* Frameworks */,
@@ -112,6 +118,8 @@
 				EA5888111E8110CE001447C4 /* TableViewController.m */,
 				EA5888151E811C93001447C4 /* JointVideoViewController.h */,
 				EA5888161E811C93001447C4 /* JointVideoViewController.m */,
+				EA61A6DC1E8361B700A9FC8A /* FilterViewController.h */,
+				EA61A6DD1E8361B700A9FC8A /* FilterViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -188,6 +196,7 @@
 			files = (
 				EA41EBA71E7FABA000210999 /* LaunchScreen.storyboard in Resources */,
 				EA41EBA41E7FABA000210999 /* Assets.xcassets in Resources */,
+				EA61A6E11E83657100A9FC8A /* testPic.jpg in Resources */,
 				EA41EBA21E7FAB9F00210999 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,6 +214,7 @@
 				EA41EB9C1E7FAB9F00210999 /* AppDelegate.m in Sources */,
 				EA5888171E811C93001447C4 /* JointVideoViewController.m in Sources */,
 				EA5888121E8110CE001447C4 /* TableViewController.m in Sources */,
+				EA61A6DE1E8361B700A9FC8A /* FilterViewController.m in Sources */,
 				EA41EB991E7FAB9F00210999 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
