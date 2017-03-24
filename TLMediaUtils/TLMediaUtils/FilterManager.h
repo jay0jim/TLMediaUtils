@@ -1,8 +1,8 @@
 //
-//  ImageFilter.h
+//  FilterManager.h
 //  TLMediaUtils
 //
-//  Created by Tony on 2017/3/23.
+//  Created by Tony on 2017/3/24.
 //  Copyright © 2017年 Tony. All rights reserved.
 //
 
@@ -10,11 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreImage/CoreImage.h>
 
-typedef enum : NSUInteger {
-    TLFileterTypeNone = 0,
-} TLFilterType;
-
-@interface ImageFilter : NSObject
+@interface FilterManager : NSObject
 
 - (CGImageRef)setFilter:(NSString *)filterName OnImage:(CGImageRef)imageRef;
 

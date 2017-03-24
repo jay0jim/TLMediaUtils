@@ -8,7 +8,7 @@
 
 #import "FilterViewController.h"
 
-#import <ImageFilter.h>
+#import <FilterManager.h>
 
 #define screenWidth  [UIScreen mainScreen].bounds.size.width
 #define screenHeight [UIScreen mainScreen].bounds.size.height
@@ -16,6 +16,7 @@
 @interface FilterViewController ()
 
 @property (strong, nonatomic) UIImageView *displayView;
+@property (strong, nonatomic) UIImageView *displayView2;
 
 @end
 
@@ -27,14 +28,22 @@
     NSString *testPicPath = [[NSBundle mainBundle] pathForResource:@"testPic" ofType:@"jpg"];
     UIImage *image = [UIImage imageWithContentsOfFile:testPicPath];
     
-    ImageFilter *filter = [[ImageFilter alloc] init];
-    CGImageRef filteredImageRef = [filter setFilter:nil OnImage:image.CGImage];
+    FilterManager *filter = [[FilterManager alloc] init];
+    CGImageRef filteredImageRef = [filter setFilter:@"CISepiaTone" OnImage:image.CGImage];
     UIImage *displayImage = [UIImage imageWithCGImage:filteredImageRef];
     
     self.displayView = [[UIImageView alloc] initWithImage:displayImage];
-    self.displayView.frame = CGRectMake(0, 30, screenWidth, screenWidth * 4/3);
-    self.displayView.center = self.view.center;
+    self.displayView.frame = CGRectMake(0, self.view.center.y - 100, screenWidth / 2, screenWidth / 2 * 4/3);
     [self.view addSubview:self.displayView];
+    
+    UIImage *image2 = [UIImage imageWithContentsOfFile:testPicPath];
+
+    CGImageRef filteredImageRef2 = [filter setFilter:@"CIGaussianBlur" OnImage:image2.CGImage];
+    UIImage *displayImage2 = [UIImage imageWithCGImage:filteredImageRef2];
+    
+    self.displayView2 = [[UIImageView alloc] initWithImage:displayImage2];
+    self.displayView2.frame = CGRectMake(screenWidth/2, self.view.center.y, screenWidth/2, screenWidth/2 * 4/3);
+    [self.view addSubview:self.displayView2];
 }
 
 - (void)didReceiveMemoryWarning {

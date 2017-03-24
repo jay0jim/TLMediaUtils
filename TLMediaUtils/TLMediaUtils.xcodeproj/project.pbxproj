@@ -12,10 +12,10 @@
 		EA073C101E7FC64B004B9AF1 /* TLMediaUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EA073C0F1E7FC64B004B9AF1 /* TLMediaUtils.m */; };
 		EA073C1B1E7FD42C004B9AF1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA073C1A1E7FD42C004B9AF1 /* AVFoundation.framework */; };
 		EA073C1D1E7FD435004B9AF1 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA073C1C1E7FD435004B9AF1 /* CoreMotion.framework */; };
-		EA61A6E41E83660900A9FC8A /* ImageFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = EA61A6E31E83660900A9FC8A /* ImageFilter.m */; };
 		EA61A6E61E83661900A9FC8A /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA61A6E51E83661900A9FC8A /* CoreImage.framework */; };
 		EA61A6E81E836D5900A9FC8A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA61A6E71E836D5900A9FC8A /* OpenGLES.framework */; };
 		EA8B8D4F1E82BFE0006C0B08 /* FileSavingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8B8D4E1E82BFE0006C0B08 /* FileSavingManager.m */; };
+		EAAB3CC31E8509FE000E0384 /* FilterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EAAB3CC21E8509FE000E0384 /* FilterManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,12 +40,12 @@
 		EA073C0F1E7FC64B004B9AF1 /* TLMediaUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMediaUtils.m; sourceTree = "<group>"; };
 		EA073C1A1E7FD42C004B9AF1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EA073C1C1E7FD435004B9AF1 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		EA61A6E21E83660900A9FC8A /* ImageFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageFilter.h; sourceTree = "<group>"; };
-		EA61A6E31E83660900A9FC8A /* ImageFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageFilter.m; sourceTree = "<group>"; };
 		EA61A6E51E83661900A9FC8A /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		EA61A6E71E836D5900A9FC8A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		EA8B8D4D1E82BFE0006C0B08 /* FileSavingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileSavingManager.h; sourceTree = "<group>"; };
 		EA8B8D4E1E82BFE0006C0B08 /* FileSavingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileSavingManager.m; sourceTree = "<group>"; };
+		EAAB3CC11E8509FE000E0384 /* FilterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterManager.h; sourceTree = "<group>"; };
+		EAAB3CC21E8509FE000E0384 /* FilterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,8 +126,8 @@
 			children = (
 				EA8B8D4D1E82BFE0006C0B08 /* FileSavingManager.h */,
 				EA8B8D4E1E82BFE0006C0B08 /* FileSavingManager.m */,
-				EA61A6E21E83660900A9FC8A /* ImageFilter.h */,
-				EA61A6E31E83660900A9FC8A /* ImageFilter.m */,
+				EAAB3CC11E8509FE000E0384 /* FilterManager.h */,
+				EAAB3CC21E8509FE000E0384 /* FilterManager.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -191,8 +191,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA073C101E7FC64B004B9AF1 /* TLMediaUtils.m in Sources */,
+				EAAB3CC31E8509FE000E0384 /* FilterManager.m in Sources */,
 				EA8B8D4F1E82BFE0006C0B08 /* FileSavingManager.m in Sources */,
-				EA61A6E41E83660900A9FC8A /* ImageFilter.m in Sources */,
 				EA073C091E7FC582004B9AF1 /* TLBasicCameraController.m in Sources */,
 				EA073C0A1E7FC582004B9AF1 /* TLPreviewView.m in Sources */,
 			);

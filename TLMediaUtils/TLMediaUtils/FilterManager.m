@@ -1,22 +1,21 @@
 //
-//  ImageFilter.m
+//  FilterManager.m
 //  TLMediaUtils
 //
-//  Created by Tony on 2017/3/23.
+//  Created by Tony on 2017/3/24.
 //  Copyright © 2017年 Tony. All rights reserved.
 //
 
-#import "ImageFilter.h"
+#import "FilterManager.h"
 
-
-@interface ImageFilter ()
+@interface FilterManager ()
 
 @property (strong, nonatomic) CIContext *context;
 @property (strong, nonatomic) EAGLContext *glContext;
 
 @end
 
-@implementation ImageFilter
+@implementation FilterManager
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -34,7 +33,7 @@
 
 - (CGImageRef)setFilter:(NSString *)filterName OnImage:(CGImageRef)imageRef {
     
-    CIFilter *filter = [CIFilter filterWithName:@"CISepiaTone"];
+    CIFilter *filter = [CIFilter filterWithName:filterName];
     
     CIImage *image = [CIImage imageWithCGImage:imageRef];
     
